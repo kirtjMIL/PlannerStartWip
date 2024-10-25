@@ -1,6 +1,8 @@
-FROM node:12
+FROM node:21
 
 WORKDIR /app
+
+RUN npm install -g nodemon
 
 COPY package*.json ./
 
@@ -12,4 +14,4 @@ ENV PORT=8080
 
 EXPOSE 8080
 
-CMD [ "npm", "start" ]
+CMD [ "npm", "run", "dev" ]
