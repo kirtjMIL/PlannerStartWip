@@ -4,6 +4,10 @@ WORKDIR /app
 
 RUN npm install -g nodemon
 
+RUN npm install @aws-sdk/client-dynamodb
+
+RUN npm install dotenv
+
 COPY package*.json ./
 
 RUN npm install

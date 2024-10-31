@@ -1,7 +1,30 @@
-version: '3.8'
 services:
   backend_api:
-    build: .
+    build: ./api
+    container_name: backend_api_container
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./api:/app
+      - /app/node_modules
+  client:
+    build: ./client
+    container_name: client_container
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    develop:
+      watch:
+      - action: sync
+        path: ./client
+        target: ./app/src/client
+        ignore: 
+        - ./app/node_modules
+      - action: rebuild
+        path: ./client 
+    
+      
 
 #   web:
 #     build: .
